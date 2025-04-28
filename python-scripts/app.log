@@ -1,0 +1,15 @@
+2025-03-12T15:44:40.234929+0300 INFO This is an info message.
+2025-03-12T15:44:40.235077+0300 WARNING This is a warning message.
+2025-03-12T15:44:40.235151+0300 ERROR This is an error message.
+2025-03-12T15:44:40.235196+0300 CRITICAL This is a critical error!
+2025-03-12T15:51:24.756340+0300 INFO Logging with rotation enabled!
+2025-03-12 15:51:24.756 | INFO     | __main__:<module>:6 - Logging with rotation enabled!
+2025-03-12 15:51:24.764 | DEBUG    | __main__:<module>:8 - This is a debug message.
+2025-03-12T15:51:24.764817+0300 INFO This is an info message.
+2025-03-12 15:51:24.764 | INFO     | __main__:<module>:9 - This is an info message.
+2025-03-12T15:51:24.764887+0300 WARNING This is a warning message.
+2025-03-12 15:51:24.764 | WARNING  | __main__:<module>:10 - This is a warning message.
+2025-03-12T15:51:24.764938+0300 ERROR This is an error message.
+2025-03-12 15:51:24.764 | ERROR    | __main__:<module>:11 - This is an error message.
+2025-03-12T15:51:24.764981+0300 CRITICAL This is a critical error!
+2025-03-12 15:51:24.764 | CRITICAL | __main__:<module>:12 - This is a critical error!
