@@ -369,3 +369,234 @@
 2025-04-28T11:05:02.194462+0300 INFO New SSH connection established
 2025-04-28T11:05:04.194953+0300 INFO Security scan completed
 2025-04-28T11:05:06.200759+0300 INFO User logged out
+2025-05-03T15:38:40.541822+0300 INFO User login successful
+2025-05-03T15:38:42.542298+0300 INFO Firewall detached unusual traffic
+2025-05-03T15:38:44.542552+0300 INFO Firewall detached unusual traffic
+2025-05-03T15:38:46.542844+0300 INFO New SSH connection established
+2025-05-03T15:38:48.543156+0300 INFO New SSH connection established
+2025-05-03T15:38:50.543643+0300 INFO Failed login attempt
+2025-05-03T15:39:51.665374+0300 INFO Failed login attempt
+2025-05-03T15:39:53.665712+0300 INFO User login successful
+2025-05-03T15:39:55.666045+0300 INFO Firewall detached unusual traffic
+2025-05-03T15:39:57.666367+0300 INFO User login successful
+2025-05-03T15:39:59.666672+0300 INFO Security scan completed
+2025-05-03T15:40:01.667071+0300 INFO Firewall detached unusual traffic
+2025-05-03T15:40:03.667333+0300 INFO Security scan completed
+2025-05-03T15:40:05.667682+0300 INFO User login successful
+2025-05-03T15:40:11.249724+0300 INFO Security scan completed
+2025-05-03T15:40:13.249985+0300 INFO Firewall detached unusual traffic
+2025-05-03T15:40:15.250271+0300 INFO Failed login attempt
+2025-05-03T15:40:17.250592+0300 INFO Security scan completed
+2025-05-03T15:40:19.250862+0300 INFO Failed login attempt
+2025-05-03T15:40:21.251343+0300 INFO Security scan completed
+2025-05-03T15:40:23.251813+0300 INFO Failed login attempt
+2025-05-03T15:40:25.252130+0300 INFO New SSH connection established
+2025-05-03T15:40:27.252502+0300 INFO User logged out
+2025-05-03T15:40:29.252811+0300 INFO Security scan completed
+2025-05-03T15:40:31.253070+0300 INFO Firewall detached unusual traffic
+2025-05-03T15:40:33.253325+0300 INFO User login successful
+2025-05-03T15:40:35.253614+0300 INFO Firewall detached unusual traffic
+2025-05-03T15:40:37.254032+0300 INFO Firewall detached unusual traffic
+2025-05-03T15:40:39.254338+0300 INFO User login successful
+2025-05-03T15:40:41.254692+0300 INFO New SSH connection established
+2025-05-03T15:40:43.255052+0300 INFO Security scan completed
+2025-05-03T15:40:48.839533+0300 INFO Failed login attempt
+2025-05-03T15:40:50.839892+0300 INFO User logged out
+2025-05-03T15:40:52.840241+0300 INFO User login successful
+2025-05-03T15:40:54.840568+0300 INFO New SSH connection established
+2025-05-03T15:40:56.840881+0300 INFO User logged out
+2025-05-03T17:28:32.807984+0300 INFO New SSH connection established
+2025-05-03T17:28:34.808526+0300 INFO Security scan completed
+2025-05-03T17:28:36.808896+0300 INFO New SSH connection established
+2025-05-03T17:28:38.809339+0300 INFO Failed login attempt
+2025-05-03T17:28:40.809625+0300 INFO Failed login attempt
+2025-05-03T17:28:42.809954+0300 INFO Failed login attempt
+2025-05-03T17:28:44.810347+0300 INFO Failed login attempt
+2025-05-03T17:28:49.756086+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:28:51.756435+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:28:53.756716+0300 INFO New SSH connection established
+2025-05-03T17:28:55.757077+0300 INFO User logged out
+2025-05-03T17:28:57.757441+0300 INFO New SSH connection established
+2025-05-03T17:28:59.757686+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:29:01.757927+0300 INFO New SSH connection established
+2025-05-03T17:29:03.758167+0300 INFO Security scan completed
+2025-05-03T17:29:05.758401+0300 INFO User login successful
+2025-05-03T17:29:07.758656+0300 INFO Failed login attempt
+2025-05-03T17:29:09.758903+0300 INFO User logged out
+2025-05-03T17:29:11.759110+0300 INFO Failed login attempt
+2025-05-03T17:29:13.759338+0300 INFO User logged out
+2025-05-03T17:29:15.759571+0300 INFO User logged out
+2025-05-03T17:29:17.759827+0300 INFO Security scan completed
+2025-05-03T17:29:19.760087+0300 INFO Security scan completed
+2025-05-03T17:29:24.680545+0300 INFO Failed login attempt
+2025-05-03T17:29:26.680929+0300 INFO User login successful
+2025-05-03T17:29:28.681188+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:29:30.682091+0300 INFO New SSH connection established
+2025-05-03T17:29:32.682468+0300 INFO Security scan completed
+2025-05-03T17:29:34.682774+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:29:36.683035+0300 INFO User logged out
+2025-05-03T17:29:38.683355+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:29:40.683670+0300 INFO New SSH connection established
+2025-05-03T17:29:42.683937+0300 INFO User logged out
+2025-05-03T17:29:44.684237+0300 INFO New SSH connection established
+2025-05-03T17:29:46.684502+0300 INFO Security scan completed
+2025-05-03T17:29:48.684818+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:29:50.685067+0300 INFO Security scan completed
+2025-05-03T17:29:52.685317+0300 INFO New SSH connection established
+2025-05-03T17:29:54.685577+0300 INFO New SSH connection established
+2025-05-03T17:29:59.619373+0300 INFO Security scan completed
+2025-05-03T17:30:01.619622+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:30:03.619931+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:30:05.620307+0300 INFO New SSH connection established
+2025-05-03T17:30:07.620612+0300 INFO Security scan completed
+2025-05-03T17:30:09.620979+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:30:11.621309+0300 INFO User logged out
+2025-05-03T17:30:13.621543+0300 INFO Security scan completed
+2025-05-03T17:30:15.621831+0300 INFO User logged out
+2025-05-03T17:30:17.622150+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:30:19.622433+0300 INFO New SSH connection established
+2025-05-03T17:30:21.622695+0300 INFO User logged out
+2025-05-03T17:30:23.623009+0300 INFO User logged out
+2025-05-03T17:30:25.623388+0300 INFO User login successful
+2025-05-03T17:30:27.623724+0300 INFO Failed login attempt
+2025-05-03T17:30:29.624012+0300 INFO User logged out
+2025-05-03T17:30:34.542489+0300 INFO Security scan completed
+2025-05-03T17:30:36.542809+0300 INFO Failed login attempt
+2025-05-03T17:30:38.543113+0300 INFO New SSH connection established
+2025-05-03T17:30:40.543379+0300 INFO New SSH connection established
+2025-05-03T17:30:42.543605+0300 INFO New SSH connection established
+2025-05-03T17:30:44.543835+0300 INFO Failed login attempt
+2025-05-03T17:30:46.544090+0300 INFO User login successful
+2025-05-03T17:30:48.544342+0300 INFO User logged out
+2025-05-03T17:30:50.544581+0300 INFO User logged out
+2025-05-03T17:30:52.544891+0300 INFO Failed login attempt
+2025-05-03T17:30:54.545144+0300 INFO User login successful
+2025-05-03T17:30:56.545374+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:30:58.545624+0300 INFO New SSH connection established
+2025-05-03T17:31:00.545966+0300 INFO Failed login attempt
+2025-05-03T17:31:02.546224+0300 INFO Failed login attempt
+2025-05-03T17:31:04.546638+0300 INFO Failed login attempt
+2025-05-03T17:31:09.258118+0300 INFO User login successful
+2025-05-03T17:31:11.258472+0300 INFO New SSH connection established
+2025-05-03T17:31:13.258840+0300 INFO New SSH connection established
+2025-05-03T17:31:15.259122+0300 INFO User logged out
+2025-05-03T17:31:17.259443+0300 INFO New SSH connection established
+2025-05-03T17:31:19.259795+0300 INFO Security scan completed
+2025-05-03T17:31:21.260068+0300 INFO New SSH connection established
+2025-05-03T17:31:23.260355+0300 INFO User logged out
+2025-05-03T17:31:25.260601+0300 INFO User logged out
+2025-05-03T17:31:27.260879+0300 INFO Failed login attempt
+2025-05-03T17:31:29.261424+0300 INFO User login successful
+2025-05-03T17:31:31.261688+0300 INFO Security scan completed
+2025-05-03T17:31:33.261956+0300 INFO Failed login attempt
+2025-05-03T17:31:35.262186+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:31:37.262410+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:31:39.262654+0300 INFO User logged out
+2025-05-03T17:31:44.474212+0300 INFO Failed login attempt
+2025-05-03T17:31:46.474473+0300 INFO New SSH connection established
+2025-05-03T17:31:48.474954+0300 INFO User logged out
+2025-05-03T17:31:50.475192+0300 INFO Security scan completed
+2025-05-03T17:31:52.476028+0300 INFO Security scan completed
+2025-05-03T17:31:54.476283+0300 INFO User login successful
+2025-05-03T17:31:56.476598+0300 INFO Failed login attempt
+2025-05-03T17:31:58.476912+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:32:00.477175+0300 INFO User login successful
+2025-05-03T17:32:02.477436+0300 INFO Failed login attempt
+2025-05-03T17:32:04.477940+0300 INFO Security scan completed
+2025-05-03T17:32:06.478209+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:32:08.478552+0300 INFO User login successful
+2025-05-03T17:32:10.478890+0300 INFO Failed login attempt
+2025-05-03T17:32:12.479162+0300 INFO User login successful
+2025-05-03T17:32:14.479491+0300 INFO New SSH connection established
+2025-05-03T17:32:16.479752+0300 INFO User login successful
+2025-05-03T17:32:21.410254+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:32:23.410513+0300 INFO User login successful
+2025-05-03T17:32:25.410723+0300 INFO User logged out
+2025-05-03T17:32:27.410928+0300 INFO Failed login attempt
+2025-05-03T17:32:29.411176+0300 INFO New SSH connection established
+2025-05-03T17:32:31.411414+0300 INFO User logged out
+2025-05-03T17:32:33.411646+0300 INFO User login successful
+2025-05-03T17:32:35.411897+0300 INFO New SSH connection established
+2025-05-03T17:32:37.412156+0300 INFO User login successful
+2025-05-03T17:32:39.412429+0300 INFO User logged out
+2025-05-03T17:32:41.412832+0300 INFO New SSH connection established
+2025-05-03T17:32:43.413093+0300 INFO Security scan completed
+2025-05-03T17:32:45.413410+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:32:47.413670+0300 INFO User logged out
+2025-05-03T17:32:49.413938+0300 INFO Security scan completed
+2025-05-03T17:32:51.414222+0300 INFO User logged out
+2025-05-03T17:32:56.348171+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:39:22.407709+0300 INFO User login successful
+2025-05-03T17:39:24.407928+0300 INFO Failed login attempt
+2025-05-03T17:39:26.408158+0300 INFO User login successful
+2025-05-03T17:39:28.408422+0300 INFO User login successful
+2025-05-03T17:39:30.408722+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:39:32.408995+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:39:34.409282+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:39:36.409621+0300 INFO New SSH connection established
+2025-05-03T17:39:38.409888+0300 INFO Failed login attempt
+2025-05-03T17:39:40.410157+0300 INFO User login successful
+2025-05-03T17:39:42.410493+0300 INFO User login successful
+2025-05-03T17:39:44.410833+0300 INFO Security scan completed
+2025-05-03T17:39:46.411150+0300 INFO Failed login attempt
+2025-05-03T17:39:48.411469+0300 INFO Security scan completed
+2025-05-03T17:39:50.411901+0300 INFO User logged out
+2025-05-03T17:39:52.412252+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:39:57.336032+0300 INFO Security scan completed
+2025-05-03T17:39:59.336292+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:40:01.336574+0300 INFO User login successful
+2025-05-03T17:40:03.336987+0300 INFO New SSH connection established
+2025-05-03T17:40:05.337324+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:40:07.337771+0300 INFO User logged out
+2025-05-03T17:40:09.338064+0300 INFO Security scan completed
+2025-05-03T17:40:11.338302+0300 INFO User login successful
+2025-05-03T17:40:13.338603+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:40:15.338887+0300 INFO User login successful
+2025-05-03T17:40:17.339154+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:40:19.339404+0300 INFO Failed login attempt
+2025-05-03T17:40:21.339809+0300 INFO User logged out
+2025-05-03T17:40:23.340101+0300 INFO User login successful
+2025-05-03T17:40:25.340399+0300 INFO Failed login attempt
+2025-05-03T17:40:27.340743+0300 INFO User logged out
+2025-05-03T17:40:29.340989+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:40:34.267882+0300 INFO User login successful
+2025-05-03T17:40:36.268121+0300 INFO User logged out
+2025-05-03T17:40:38.268364+0300 INFO Failed login attempt
+2025-05-03T17:40:40.268591+0300 INFO New SSH connection established
+2025-05-03T17:40:42.268828+0300 INFO User logged out
+2025-05-03T17:40:44.269061+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:40:46.269307+0300 INFO Failed login attempt
+2025-05-03T17:40:48.269550+0300 INFO New SSH connection established
+2025-05-03T17:40:50.269908+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:40:52.270173+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:40:54.270441+0300 INFO New SSH connection established
+2025-05-03T17:40:56.270706+0300 INFO Failed login attempt
+2025-05-03T17:40:58.270994+0300 INFO User login successful
+2025-05-03T17:41:00.271408+0300 INFO New SSH connection established
+2025-05-03T17:41:02.271844+0300 INFO New SSH connection established
+2025-05-03T17:41:04.272296+0300 INFO User logged out
+2025-05-03T17:41:09.205732+0300 INFO User logged out
+2025-05-03T17:41:11.206006+0300 INFO Security scan completed
+2025-05-03T17:41:13.206367+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:41:15.206740+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:41:17.207074+0300 INFO User login successful
+2025-05-03T17:41:19.207412+0300 INFO Failed login attempt
+2025-05-03T17:41:21.207723+0300 INFO User logged out
+2025-05-03T17:41:23.207970+0300 INFO User login successful
+2025-05-03T17:41:25.208217+0300 INFO Failed login attempt
+2025-05-03T17:41:27.208475+0300 INFO User login successful
+2025-05-03T17:41:29.208750+0300 INFO Failed login attempt
+2025-05-03T17:41:31.208974+0300 INFO User logged out
+2025-05-03T17:41:33.209205+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:41:35.209486+0300 INFO Security scan completed
+2025-05-03T17:41:37.209741+0300 INFO New SSH connection established
+2025-05-03T17:41:39.209989+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:41:44.164966+0300 INFO User logged out
+2025-05-03T17:41:46.165394+0300 INFO Security scan completed
+2025-05-03T17:41:48.165718+0300 INFO User logged out
+2025-05-03T17:41:50.165991+0300 INFO New SSH connection established
+2025-05-03T17:41:52.166362+0300 INFO User login successful
+2025-05-03T17:41:54.166683+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:41:56.166988+0300 INFO User logged out
+2025-05-03T17:41:58.167413+0300 INFO Firewall detached unusual traffic
+2025-05-03T17:42:00.167795+0300 INFO User login successful
