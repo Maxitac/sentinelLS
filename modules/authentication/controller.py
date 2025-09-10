@@ -1,7 +1,7 @@
 from nacl.public import PrivateKey, PublicKey, Box
-import os
 import socket
 import json
+from nacl.hash import blake2b
 
 #agent's details
 HOST = "127.0.0.1"
@@ -18,12 +18,15 @@ def main():
         agent_data = json.loads(agent_msg)
         agent_pubkey_bytes = bytes.fromhex(agent_data["agent_pubkey"])
         agent_public_key = PublicKey(agent_pubkey_bytes)
+        mac_address = agent_data["mac_address"]
         print("[Controller] Received Agent Public Key:", agent_data["agent_pubkey"])
+        print("[Controller] Received Agent MAC Address:", mac_address)
 
         device_id = agent_data["device_id"].encode()
         master_secret = b"MASTER_KEY_ONLY_CONTROLLER_KNOWS"
-        # Modify later to derive the shared secret key from device id
-        shared_secret_key = os.urandom(32)
+        input_bytes = mac_address.encode() + master_secret
+        # Derive key from MAC address
+        shared_secret_key = blake2b(input_bytes, digest_size=32)
         print("[Controller] Secret key generated:", shared_secret_key.hex())
 
         #Generate Controller's Key Pair
