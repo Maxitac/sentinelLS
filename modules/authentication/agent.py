@@ -18,7 +18,7 @@ def load_agent_info():
 
 
 # Controller's details
-HOST = "127.0.0.1"  
+HOST = "192.168.100.138"  
 PORT = 7777   
 
 def get_mac_address():
@@ -32,6 +32,7 @@ def main():
     if agent_info:
         device_id = agent_info["agent_id"]
         print("[Agent] Already registered. Using existing shared key.")
+        return
     else:
         print("[Agent] Starting registration process...")
         device_id = str(uuid.uuid4())
