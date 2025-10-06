@@ -19,7 +19,7 @@ def load_agent_info():
 
 # Controller's details
 HOST = "192.168.100.138"  
-PORT = 7777   
+PORT = 5555   
 
 def get_mac_address():
     mac_int = uuid.getnode()

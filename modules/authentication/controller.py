@@ -82,9 +82,9 @@ def main():
     agent_keys = load_keys()
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.bind(("0.0.0.0", 7777))
+        s.bind(("0.0.0.0", 5555))
         s.listen(5)
-        print("[Controller] Listening for agent connections on port 7777...")
+        print("[Controller] Listening for agent connections on port 5555...")
 
         while True:
             conn, addr = s.accept()

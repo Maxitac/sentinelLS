@@ -1,0 +1,46 @@
+BEGIN Agent
+
+    IF agent_info.json EXISTS THEN
+        LOAD agent_id and shared_secret_key from file
+        PRINT "Already registered. Using existing key."
+        EXIT or reuse shared_secret_key for communication
+    ENDIF
+
+    # Step 1 — Generate cryptographic key pair
+    agent_private_key ← generate_private_key()
+    agent_public_key  ← agent_private_key.public_key
+
+    # Step 2 — Gather identity info
+    mac_address ← get_mac_address()
+    agent_id ← generate_uuid()
+
+    # Step 3 — Connect to Controller
+    CONNECT to (controller_host, controller_port)
+
+    # Step 4 — Send registration data
+    SEND {
+        "agent_pubkey": agent_public_key,
+        "mac_address": mac_address,
+        "device_id": agent_id
+    }
+
+    # Step 5 — Receive Controller’s response
+    RECEIVE {
+        "controller_pubkey": controller_public_key,
+        "ciphertext": encrypted_shared_key
+    }
+
+    # Step 6 — Decrypt shared key
+    agent_box ← create_box(agent_private_key, controller_public_key)
+    shared_secret_key ← agent_box.decrypt(encrypted_shared_key)
+
+    # Step 7 — Save info locally
+    SAVE {
+        "agent_id": agent_id,
+        "shared_secret_key": shared_secret_key
+    } TO agent_info.json
+
+    # Step 8 — Acknowledge success
+    SEND "Decryption successful"
+
+END Agent

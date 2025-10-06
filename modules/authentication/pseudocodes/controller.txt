@@ -1,0 +1,55 @@
+BEGIN Controller
+
+    LOAD agent_keys.json INTO agent_keys
+
+    # Step 1 — Start server
+    LISTEN on port 7777
+
+    WHILE True DO
+        ACCEPT new_connection FROM agent
+        SPAWN new_thread(handle_agent)
+
+    FUNCTION handle_agent(connection, agent_keys):
+
+        # Step 2 — Receive agent's info
+        agent_data ← RECEIVE JSON from connection
+        agent_public_key ← agent_data["agent_pubkey"]
+        mac_address ← agent_data["mac_address"]
+        agent_id ← agent_data["device_id"]
+
+        PRINT "Agent connected:", agent_id, mac_address
+
+        # Step 3 — Derive unique shared secret key
+        master_secret ← "MASTER_KEY_ONLY_CONTROLLER_KNOWS"
+        shared_secret_key ← blake2b(mac_address + master_secret)
+
+        # Step 4 — Store agent info
+        agent_keys[agent_id] ← {
+            "mac_address": mac_address,
+            "secret_key": shared_secret_key,
+            "last_seen": current_time()
+        }
+        SAVE agent_keys TO agent_keys.json
+
+        # Step 5 — Generate controller key pair
+        controller_private_key ← generate_private_key()
+        controller_public_key ← controller_private_key.public_key
+
+        # Step 6 — Encrypt shared key for agent
+        controller_box ← create_box(controller_private_key, agent_public_key)
+        ciphertext ← controller_box.encrypt(shared_secret_key)
+
+        # Step 7 — Send encrypted data to agent
+        SEND {
+            "controller_pubkey": controller_public_key,
+            "ciphertext": ciphertext
+        }
+
+        # Step 8 — Wait for confirmation
+        ack ← RECEIVE from agent
+        PRINT "Agent", agent_id, ":", ack
+
+        CLOSE connection
+    END FUNCTION
+
+END Controller
