@@ -40,5 +40,5 @@ def ingest_log():
 
 
 if __name__ == "__main__":
-    print("[*] Starting log receiver on http://0.0.0.0:5555/ingest")
-    app.run(host="0.0.0.0", port=5555, debug=True)
+    print("[*] Starting log receiver on http://0.0.0.0:7777/ingest")
+    app.run(host="0.0.0.0", port=7777, debug=True)

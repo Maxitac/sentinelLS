@@ -6,7 +6,7 @@ import requests
 
 # === Configuration ===
 LOG_FILE = "/var/log/auth.log"   # OpenSSH logs appear here on Debian
-SERVER_URL = "http://192.168.100.138:5555/ingest"
+SERVER_URL = "http://192.168.100.138:7777/ingest"
 SOURCE_TYPE = "openssh"
 SOURCE_ID = socket.gethostname()  # can be hostname, UUID, or manually set
 
