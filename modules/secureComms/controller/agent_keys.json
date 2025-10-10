@@ -1,0 +1,12 @@
+{
+  "592ddbbd-7b93-4f6c-9d65-77f557d8b68c": {
+    "mac_address": "08:00:27:45:a1:14",
+    "secret_key": "a3a688286687ceb72725b501cb4322683eb396ebb622e13b5f33ddc4d254b4fd",
+    "last_seen": "2025-10-10T09:05:01.097246"
+  },
+  "c9d12454-4d31-49d2-9cb6-a0c9fa03ba56": {
+    "mac_address": "08:00:27:cf:a7:64",
+    "secret_key": "262fcdb55e60ff34f5669cbe5b79006b82c342455527a683b683e9f5ba20d7b0",
+    "last_seen": "2025-10-10T09:08:51.441003"
+  }
+}
