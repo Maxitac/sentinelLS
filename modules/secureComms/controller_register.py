@@ -2,6 +2,7 @@ from nacl.public import PrivateKey, PublicKey, Box
 import socket
 import json
 from nacl.hash import blake2b
+from nacl.encoding import RawEncoder
 
 import threading
 import os
@@ -38,7 +39,7 @@ def handle_agent(conn, addr, agent_keys):
         # Derive secret key deterministically
         master_secret = b"MASTER_KEY_ONLY_CONTROLLER_KNOWS"
         input_bytes = mac_address.encode() + master_secret
-        shared_secret_key = blake2b(input_bytes, digest_size=32)
+        shared_secret_key = blake2b(input_bytes, digest_size=32, encoder=RawEncoder)
 
         # Store the key
         agent_keys[device_id] = {
