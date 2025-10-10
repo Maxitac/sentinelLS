@@ -1,0 +1,10 @@
+{
+  "server_url": "http://192.168.100.138:7777/ingest",
+  "sources": [
+    {
+      "source_id": "vm01",
+      "source_type": "openssh",
+      "log_path": "/var/log/auth.log"
+    }
+  ]
+}
