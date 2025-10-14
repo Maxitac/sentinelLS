@@ -70,7 +70,8 @@ def ingest_log():
             log_data["source_type"],
             log_data["timestamp"],
             log_data["rawlog"],
-            datetime.utcnow().isoformat()
+            datetime.now(datetime.UTC).isoformat()
+
         ))
         conn.commit()
         conn.close()
@@ -85,5 +86,5 @@ def ingest_log():
 
 if __name__ == "__main__":
     init_db()
-    print("[*] Secure log receiver running on http://0.0.0.0:5555/ingest")
-    app.run(host="0.0.0.0", port=5555, debug=True)
+    print("[*] Secure log receiver running on http://0.0.0.0:7777/ingest")
+    app.run(host="0.0.0.0", port=7777, debug=True)

@@ -1,0 +1,26 @@
+{
+  "openssh": {
+    "patterns": [
+      {
+        "name": "auth_failure",
+        "regex": "^(?P<timestamp>\\w{3}\\s+\\d+\\s[0-9:]+)\\s+(?P<hostname>\\S+)\\s+sshd\\[(?P<pid>\\d+)\\]:\\s+pam_unix\\(sshd:auth\\):\\s+authentication failure;.*rhost=(?P<ip>[0-9\\.]+).*user=(?P<username>\\S+)"
+      },
+      {
+        "name": "failed_password",
+        "regex": "^(?P<timestamp>\\w{3}\\s+\\d+\\s[0-9:]+)\\s+(?P<hostname>\\S+)\\s+sshd\\[(?P<pid>\\d+)\\]:\\s+Failed password for (?P<username>\\S+) from (?P<ip>[0-9\\.]+) port (?P<port>\\d+) (?P<protocol>\\S+)"
+      },
+      {
+        "name": "max_attempts",
+        "regex": "^(?P<timestamp>\\w{3}\\s+\\d+\\s[0-9:]+)\\s+(?P<hostname>\\S+)\\s+sshd\\[(?P<pid>\\d+)\\]:\\s+error: maximum authentication attempts exceeded for (?P<username>\\S+) from (?P<ip>[0-9\\.]+) port (?P<port>\\d+)"
+      },
+      {
+        "name": "disconnect_too_many",
+        "regex": "^(?P<timestamp>\\w{3}\\s+\\d+\\s[0-9:]+)\\s+(?P<hostname>\\S+)\\s+sshd\\[(?P<pid>\\d+)\\]:\\s+Disconnecting authenticating user (?P<username>\\S+)\\s+(?P<ip>[0-9\\.]+) port (?P<port>\\d+): Too many authentication failures"
+      },
+      {
+        "name": "cron_session",
+        "regex": "^(?P<timestamp>\\w{3}\\s+\\d+\\s[0-9:]+)\\s+(?P<hostname>\\S+)\\s+CRON\\[(?P<pid>\\d+)\\]:\\s+pam_unix\\(cron:session\\):\\s+(?P<event>session opened|session closed).*user\\s+(?P<username>\\S+)"
+      }
+    ]
+  }
+}

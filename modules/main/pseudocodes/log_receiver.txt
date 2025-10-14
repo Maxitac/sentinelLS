@@ -1,0 +1,57 @@
+BEGIN PROGRAM log_receiver
+
+    DEFINE constants:
+        KEYS_FILE = "agent_keys.json"
+        DB_FILE = "logs.db"
+
+    FUNCTION init_db():
+        CONNECT to SQLite database (DB_FILE)
+        CREATE TABLE logs IF NOT EXISTS with columns:
+            id, agent_id, source_id, source_type, timestamp, rawlog, received_at
+        CLOSE database connection
+
+    FUNCTION load_agent_keys():
+        IF KEYS_FILE exists THEN
+            RETURN parsed JSON contents
+        ELSE
+            RETURN empty dictionary
+
+    DEFINE Flask app
+
+    ROUTE /ingest (POST):
+        TRY:
+            PARSE incoming JSON data
+            EXTRACT agent_id and payload_base64
+            IF missing any THEN
+                RETURN error 400
+
+            LOAD agent_keys
+            IF agent_id not found in agent_keys THEN
+                RETURN error 403 (unrecognized agent)
+
+        
+            EXTRACT agent_id and payload_base64
+            EXTRACT shared_secret_key for agent_id
+            CONVERT key from hex → bytes
+
+            DECODE payload_base64 to bytes
+            CREATE SecretBox using shared key
+            DECRYPT payload → plaintext_bytes
+            PARSE plaintext_bytes as JSON → log_data
+
+            INSERT log_data (agent_id, source_id, source_type, timestamp, rawlog)
+            INTO database with received_at = current UTC time
+
+            PRINT "Received log from agent_id/source_type"
+            RETURN {"status": "success"}, HTTP 200
+
+        CATCH CryptoError:
+            RETURN {"error": "Decryption failed"}, 403
+        CATCH any Exception e:
+            RETURN {"error": e.message}, 500
+
+    FUNCTION main():
+        CALL init_db()
+        START Flask server on host 0.0.0.0 and port 7777
+
+END PROGRAM

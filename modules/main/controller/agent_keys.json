@@ -8,5 +8,15 @@
     "mac_address": "08:00:27:cf:a7:64",
     "secret_key": "262fcdb55e60ff34f5669cbe5b79006b82c342455527a683b683e9f5ba20d7b0",
     "last_seen": "2025-10-10T09:08:51.441003"
+  },
+  "20cb61e1-7fee-4c8c-97c6-0bade22613d8": {
+    "mac_address": "08:00:27:45:a1:14",
+    "secret_key": "a3a688286687ceb72725b501cb4322683eb396ebb622e13b5f33ddc4d254b4fd",
+    "last_seen": "2025-10-10T17:21:59.385980"
+  },
+  "869dd471-329d-44c8-bdea-683ec74a499b": {
+    "mac_address": "08:00:27:cf:a7:64",
+    "secret_key": "262fcdb55e60ff34f5669cbe5b79006b82c342455527a683b683e9f5ba20d7b0",
+    "last_seen": "2025-10-10T17:22:11.173228"
   }
 }

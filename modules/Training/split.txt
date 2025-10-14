@@ -1,0 +1,28 @@
+BEGIN
+
+    IMPORT required libraries:
+        - datasets
+        - huggingface_hub
+
+    LOGIN to Hugging Face account
+        -> prompt user for access token
+
+    LOAD dataset "darkknight25/Advanced_SIEM_Dataset" from Hugging Face
+
+    DISPLAY list of available columns in dataset
+
+    DEFINE keep_columns = [
+        "raw_log", "severity", "action", "description"
+    ]
+
+    FOR each split in dataset (train, test, validation):
+        REMOVE all columns not in keep_columns
+        STORE result in filtered_dataset
+
+    OPTIONAL:
+        SAVE filtered_dataset locally as "Advanced_SIEM_LinuxSubset"
+
+    UPLOAD filtered_dataset to Hugging Face Hub under new repository:
+        "username/Advanced_SIEM_LinuxSubset"
+
+END

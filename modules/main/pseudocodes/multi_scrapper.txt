@@ -1,0 +1,68 @@
+BEGIN PROGRAM multi_scrapper
+
+    DEFINE constants:
+        CONFIG_FILE = "config.json"
+        AGENT_INFO_FILE = "agent_info.json"
+
+    FUNCTION load_agent_info():
+        IF AGENT_INFO_FILE exists THEN
+            RETURN parsed JSON contents
+        ELSE
+            RETURN None
+
+    FUNCTION tail_log(source, server_url, box, agent_id):
+        EXTRACT log_path, source_id, source_type from source
+
+        IF log_path does NOT exist THEN
+            PRINT warning and EXIT thread
+
+        OPEN log file and move pointer to end (to monitor new entries)
+
+        LOOP forever:
+            READ new line from log file
+            IF no new line THEN
+                SLEEP 0.5 seconds
+                CONTINUE
+
+            CONSTRUCT log_payload = {
+                "source_id": source_id,"source_type": source_type,"timestamp": current UTC time,"rawlog": log line
+            }
+
+            TRY:
+                CONVERT log_payload to JSON → plaintext_bytes
+                ENCRYPT plaintext_bytes using box.encrypt()
+                BASE64-ENCODE the ciphertext
+
+                CONSTRUCT request_payload = {
+                    "agent_id": agent_id,
+                    "payload": base64_ciphertext
+                }
+
+                SEND HTTP POST request to server_url with request_payload
+                IF response not 200 OK THEN
+                    PRINT warning
+            CATCH any exceptions:
+                PRINT error and sleep briefly
+
+    FUNCTION main():
+        LOAD configuration from CONFIG_FILE
+        LOAD agent_info from AGENT_INFO_FILE
+        IF agent_info missing THEN
+            PRINT error and EXIT
+
+        EXTRACT agent_id and shared_secret_key
+        CONVERT shared_secret_key from hex to bytes
+        CREATE SecretBox(box) with shared key
+
+        GET server_url from configuration
+        PRINT "Forwarding logs to server as agent_id"
+
+        FOR each source in configuration’s sources list:
+            START new thread running tail_log(source, server_url, box, agent_id)
+
+        LOOP forever (to keep program alive):
+            SLEEP 1 second
+        ON KeyboardInterrupt:
+            PRINT "Shutting down gracefully"
+
+END PROGRAM
