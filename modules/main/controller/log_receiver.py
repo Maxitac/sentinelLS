@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 import json, os, base64, sqlite3
-from datetime import datetime
+import datetime
 from nacl.secret import SecretBox
 from nacl.exceptions import CryptoError
 
@@ -70,7 +70,7 @@ def ingest_log():
             log_data["source_type"],
             log_data["timestamp"],
             log_data["rawlog"],
-            datetime.now(datetime.UTC).isoformat()
+            datetime.datetime.now(datetime.UTC).isoformat()
 
         ))
         conn.commit()

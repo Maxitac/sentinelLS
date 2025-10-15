@@ -1,7 +1,7 @@
 import sqlite3
 import json
 import re
-from datetime import datetime
+import datetime
 
 DB_FILE = "logs.db"
 PATTERNS_FILE = "patterns.json"
@@ -29,6 +29,8 @@ def normalize_log(rawlog, source_type, patterns):
 def init_db():
     conn = sqlite3.connect(DB_FILE)
     cur = conn.cursor()
+
+    # Table for normalized logs
     cur.execute("""
         CREATE TABLE IF NOT EXISTS normalized_logs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -49,6 +51,21 @@ def init_db():
             FOREIGN KEY (log_id) REFERENCES logs(id)
         )
     """)
+
+    # Table for unknown/unmatched logs
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS unknown_logs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            log_id INTEGER,
+            agent_id TEXT,
+            source_type TEXT,
+            rawlog TEXT,
+            reason TEXT,
+            captured_at TEXT,
+            FOREIGN KEY (log_id) REFERENCES logs(id)
+        )
+    """)
+
     conn.commit()
     conn.close()
 
@@ -56,11 +73,15 @@ def normalize_new_logs():
     conn = sqlite3.connect(DB_FILE)
     cur = conn.cursor()
 
-    # Fetch logs not yet normalized
+    # Fetch logs not yet normalized or marked unknown
     cur.execute("""
         SELECT l.id, l.agent_id, l.source_type, l.rawlog
         FROM logs l
-        WHERE l.id NOT IN (SELECT log_id FROM normalized_logs)
+        WHERE l.id NOT IN (
+            SELECT log_id FROM normalized_logs
+            UNION
+            SELECT log_id FROM unknown_logs
+        )
     """)
     rows = cur.fetchall()
 
@@ -89,8 +110,7 @@ def normalize_new_logs():
                 result.get("protocol"),
                 result.get("event", result.get("pattern_name")),
                 result.get("pattern_name"),
-                datetime.now(datetime.UTC).isoformat()
-
+                datetime.datetime.now(datetime.UTC).isoformat()
             )
             cur.execute("""
                 INSERT INTO normalized_logs (
@@ -102,7 +122,22 @@ def normalize_new_logs():
             """, fields)
             print(f"[+] Normalized log {log_id} ({result['pattern_name']})")
         else:
-            print(f"[!] No pattern matched for log {log_id}")
+            # Insert into unknown_logs if no match
+            reason = "No matching regex found for source_type"
+            cur.execute("""
+                INSERT INTO unknown_logs (
+                    log_id, agent_id, source_type, rawlog, reason, captured_at
+                )
+                VALUES (?, ?, ?, ?, ?, ?)
+            """, (
+                log_id,
+                agent_id,
+                source_type,
+                rawlog,
+                reason,
+                datetime.datetime.now(datetime.UTC).isoformat()
+            ))
+            print(f"[!] No pattern matched for log {log_id} — stored in unknown_logs")
 
     conn.commit()
     conn.close()
