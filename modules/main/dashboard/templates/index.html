@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SentinelLS Security Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>SentinelLS - Analysis Dashboard</h1>
+    <p>Showing recent LLM-based anomaly detections</p>
+
+    <table id="results-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Source</th>
+                <th>Anomaly Type</th>
+                <th>Severity</th>
+                <th>Confidence</th>
+                <th>Summary</th>
+                <th>Analyzed At</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        const token = prompt("Enter your analyst token:");
+        fetch("/api/results?limit=50", {
+            headers: { "Authorization": "Bearer " + token }
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            const tbody = document.querySelector("#results-table tbody");
+            data.forEach(row => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${row.id}</td>
+                    <td>${row.source_type}</td>
+                    <td>${row.anomaly_type}</td>
+                    <td>${row.severity}</td>
+                    <td>${row.confidence ?? "-"}</td>
+                    <td>${row.summary}</td>
+                    <td>${row.analyzed_at}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        })
+        .catch(err => console.error("Error:", err));
+    </script>
+</body>
+</html>

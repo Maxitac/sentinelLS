@@ -18,5 +18,15 @@
     "mac_address": "08:00:27:cf:a7:64",
     "secret_key": "262fcdb55e60ff34f5669cbe5b79006b82c342455527a683b683e9f5ba20d7b0",
     "last_seen": "2025-10-10T17:22:11.173228"
+  },
+  "ddac2cce-0152-4285-9161-0bbe4b776d36": {
+    "mac_address": "08:00:27:cf:a7:64",
+    "secret_key": "262fcdb55e60ff34f5669cbe5b79006b82c342455527a683b683e9f5ba20d7b0",
+    "last_seen": "2025-10-16T13:36:19.167363"
+  },
+  "e0cdaba6-f1b7-4dbc-bc59-fcd997ce2780": {
+    "mac_address": "08:00:27:45:a1:14",
+    "secret_key": "a3a688286687ceb72725b501cb4322683eb396ebb622e13b5f33ddc4d254b4fd",
+    "last_seen": "2025-10-16T14:07:26.902313"
   }
 }

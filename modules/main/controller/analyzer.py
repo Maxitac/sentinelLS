@@ -7,7 +7,7 @@ import time
 # --- Configuration Constants ---
 DB_FILE = "logs.db"
 OLLAMA_URL = "http://localhost:11434/api/generate"  # default Ollama endpoint
-MODEL = "llama3.2:3B"
+MODEL = "SentinelAIv1"  # replace with your model name
 ANALYSIS_MODES_FILE = "analysis_modes.json"
 SLEEP_INTERVAL_SECONDS = 60
 
