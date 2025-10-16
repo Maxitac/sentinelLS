@@ -1,0 +1,6 @@
+{
+  "openssh": {
+    "mode": "contextual",
+    "window_minutes": 5
+  }
+}
