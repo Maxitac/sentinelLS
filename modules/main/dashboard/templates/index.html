@@ -1,52 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>SentinelLS Security Dashboard</title>
-    <link rel="stylesheet" href="/static/styles.css">
+  <meta charset="UTF-8">
+  <title>SentinelLS – Security Event Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <!-- TailwindCSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h1>SentinelLS - Analysis Dashboard</h1>
-    <p>Showing recent LLM-based anomaly detections</p>
 
-    <table id="results-table">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Source</th>
-                <th>Anomaly Type</th>
-                <th>Severity</th>
-                <th>Confidence</th>
-                <th>Summary</th>
-                <th>Analyzed At</th>
-            </tr>
+<body class="bg-gray-900 text-gray-100 font-sans">
+  <div class="container mx-auto px-6 py-8">
+    <header class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold text-blue-400">SentinelLS Security Dashboard</h1>
+      <button id="logoutBtn" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
+        Logout
+      </button>
+    </header>
+
+    <section class="bg-gray-800 rounded-lg shadow-lg p-6">
+      <h2 class="text-lg font-semibold mb-4 text-blue-300">Latest Analysis Results</h2>
+      <table class="min-w-full text-sm text-left text-gray-300">
+        <thead class="bg-gray-700 text-gray-200 uppercase text-xs">
+          <tr>
+            <th class="px-4 py-2">ID</th>
+            <th class="px-4 py-2">Log IDs</th>
+            <th class="px-4 py-2">Source</th>
+            <th class="px-4 py-2">Anomaly Type</th>
+            <th class="px-4 py-2">Severity</th>
+            <th class="px-4 py-2">Confidence</th>
+            <th class="px-4 py-2">Summary</th>
+            <th class="px-4 py-2">Analyzed At</th>
+          </tr>
         </thead>
-        <tbody></tbody>
-    </table>
+        <tbody id="resultsTable" class="divide-y divide-gray-700">
+          <tr><td colspan="8" class="px-4 py-4 text-center text-gray-500">Loading data...</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
 
-    <script>
-        const token = prompt("Enter your analyst token:");
-        fetch("/api/results?limit=50", {
-            headers: { "Authorization": "Bearer " + token }
-        })
-        .then(resp => resp.json())
-        .then(data => {
-            const tbody = document.querySelector("#results-table tbody");
-            data.forEach(row => {
-                const tr = document.createElement("tr");
-                tr.innerHTML = `
-                    <td>${row.id}</td>
-                    <td>${row.source_type}</td>
-                    <td>${row.anomaly_type}</td>
-                    <td>${row.severity}</td>
-                    <td>${row.confidence ?? "-"}</td>
-                    <td>${row.summary}</td>
-                    <td>${row.analyzed_at}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-        })
-        .catch(err => console.error("Error:", err));
-    </script>
+  <script>
+    // --- Handle authentication token ---
+    let token = localStorage.getItem("sentinel_token");
+
+    async function promptForToken() {
+      token = prompt("Enter your dashboard access token:");
+      if (token) {
+        localStorage.setItem("sentinel_token", token);
+      } else {
+        alert("A valid token is required to access the dashboard.");
+        return false;
+      }
+      return true;
+    }
+
+    // Logout functionality
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("sentinel_token");
+      location.reload();
+    });
+
+    // --- Load and render analysis results ---
+    async function loadResults() {
+      if (!token && !(await promptForToken())) return;
+
+      const response = await fetch("/api/results?limit=50", {
+        headers: { "Authorization": "Bearer " + token }
+      });
+
+      if (response.status === 401) {
+        alert("Unauthorized – invalid or expired token. Please try again.");
+        localStorage.removeItem("sentinel_token");
+        location.reload();
+        return;
+      }
+
+      if (!response.ok) {
+        document.getElementById("resultsTable").innerHTML =
+          `<tr><td colspan="8" class="px-4 py-4 text-center text-red-500">Failed to load data (${response.status}).</td></tr>`;
+        return;
+      }
+
+      const data = await response.json();
+      renderTable(data);
+    }
+
+    function renderTable(results) {
+      const table = document.getElementById("resultsTable");
+      if (!results.length) {
+        table.innerHTML = `<tr><td colspan="8" class="px-4 py-4 text-center text-gray-500">No results found.</td></tr>`;
+        return;
+      }
+
+      table.innerHTML = results.map(r => `
+        <tr class="hover:bg-gray-700 transition">
+          <td class="px-4 py-2">${r.id}</td>
+          <td class="px-4 py-2 text-gray-400">${r.log_ids.join(', ')}</td>
+          <td class="px-4 py-2">${r.source_type}</td>
+          <td class="px-4 py-2 text-yellow-300">${r.anomaly_type || "—"}</td>
+          <td class="px-4 py-2 font-semibold ${getSeverityColor(r.severity)}">${r.severity || "N/A"}</td>
+          <td class="px-4 py-2">${r.confidence ? (r.confidence * 100).toFixed(1) + "%" : "—"}</td>
+          <td class="px-4 py-2">${r.summary || "—"}</td>
+          <td class="px-4 py-2 text-gray-400">${new Date(r.analyzed_at).toLocaleString()}</td>
+        </tr>
+      `).join("");
+    }
+
+    function getSeverityColor(sev) {
+      if (!sev) return "text-gray-400";
+      sev = sev.toLowerCase();
+      if (sev.includes("high")) return "text-red-500";
+      if (sev.includes("medium")) return "text-orange-400";
+      if (sev.includes("low")) return "text-green-400";
+      return "text-gray-300";
+    }
+
+    // --- Auto-refresh results every 60 seconds ---
+    loadResults();
+    setInterval(loadResults, 60000);
+  </script>
 </body>
 </html>

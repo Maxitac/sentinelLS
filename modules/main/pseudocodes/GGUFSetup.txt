@@ -1,0 +1,26 @@
+BEGIN
+
+    # Step 1: Choose model from Hugging Face
+    PRINT "Enter Hugging Face model repo (e.g., 'ianmathu/Llama3.2:3B')"
+    INPUT model_repo
+
+    # Step 2: Create local directory for model
+    model_dir = "~/ollama/models/"
+    CREATE DIRECTORY model_dir IF NOT EXISTS
+
+    # Step 3: Download GGUF file from Hugging Face
+    PRINT "Downloading GGUF model file..."
+    EXECUTE "wget https://huggingface.co/" + model_repo + "/resolve/main/model.gguf -O " + model_dir + "model.gguf"
+
+    # Step 4: Create a model configuration file for Ollama
+
+    # Step 5: Import model into Ollama
+    PRINT "Registering model with Ollama..."
+    EXECUTE "ollama create mymodel -f " + ollama_modelfile_path
+
+    # Step 6: Verify model is available
+    EXECUTE "ollama list"
+    IF "mymodel" EXISTS THEN
+        PRINT "Model successfully imported!"
+
+END

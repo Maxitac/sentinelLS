@@ -7,11 +7,11 @@
       },
       {
         "name": "failed_password",
-        "regex": "^(?P<timestamp>\\w{3}\\s+\\d+\\s[0-9:]+)\\s+(?P<hostname>\\S+)\\s+sshd\\[(?P<pid>\\d+)\\]:\\s+Failed password for (?P<username>\\S+) from (?P<ip>[0-9\\.]+) port (?P<port>\\d+) (?P<protocol>\\S+)"
+        "regex": "^(?P<timestamp>\\w{3}\\s+\\d+\\s[0-9:]+)\\s+(?P<hostname>\\S+)\\s+sshd\\[(?P<pid>\\d+)\\]:\\s+Failed password for (?:invalid user )?(?P<username>\\S+) from (?P<ip>[0-9\\.]+) port (?P<port>\\d+) (?P<protocol>\\S+)"
       },
       {
         "name": "max_attempts",
-        "regex": "^(?P<timestamp>\\w{3}\\s+\\d+\\s[0-9:]+)\\s+(?P<hostname>\\S+)\\s+sshd\\[(?P<pid>\\d+)\\]:\\s+error: maximum authentication attempts exceeded for (?P<username>\\S+) from (?P<ip>[0-9\\.]+) port (?P<port>\\d+)"
+        "regex": "^(?P<timestamp>\\w{3}\\s+\\d+\\s[0-9:]+)\\s+(?P<hostname>\\S+)\\s+sshd\\[(?P<pid>\\d+)\\]:\\s+error: maximum authentication attempts exceeded for (?:invalid user )?(?P<username>\\S+) from (?P<ip>[0-9\\.]+) port (?P<port>\\d+)"
       },
       {
         "name": "disconnect_too_many",

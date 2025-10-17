@@ -1,0 +1,71 @@
+BEGIN
+
+DEFINE constants:
+    DB_FILE = "logs.db"
+    OLLAMA_URL = "http://localhost:11434/api/generate"
+    MODEL = "llama3.2:3B"
+    ANALYSIS_MODES_FILE = "analysis_modes.json"
+    SLEEP_INTERVAL = 60 seconds
+
+LOAD analysis mode configuration from ANALYSIS_MODES_FILE
+CONNECT to SQLite database
+CREATE TABLE "analysis_results" IF NOT EXISTS (
+    id, log_ids, source_type, anomaly_type,
+    severity, confidence, summary, analyzed_at,
+)
+
+WHILE True:
+    SET logs_processed = 0
+
+    FOR each source_type in analysis_modes:
+        SET mode = configuration["mode"]
+
+        QUERY all logs from "normalized_logs"
+        WHERE analyzed = 0 AND source_type = current source_type
+
+        IF no logs found:
+            PRINT "No new logs"
+            CONTINUE
+
+        IF mode == "single":
+            FOR each log in results:
+                PREPARE single-log prompt using predefined template
+                SEND prompt to LLM via API
+                RECEIVE structured JSON result
+                INSERT result into "analysis_results"
+                UPDATE log as analyzed
+                PRINT summary of result
+
+        ELSE IF mode == "batch":
+            SPLIT logs into batches of defined size
+            FOR each batch:
+                PREPARE group prompt
+                SEND to LLM
+                RECEIVE structured JSON
+                STORE analysis result in database
+                MARK all logs in batch as analyzed
+
+        ELSE IF mode == "contextual":
+            GROUP logs by IP or username
+            FOR each group:
+                IF only one log:
+                    ANALYZE as single log (fallback)
+                ELSE:
+                    FILTER logs within defined time window (e.g., 5 minutes)
+                    PREPARE contextual prompt
+                    SEND logs to LLM
+                    RECEIVE structured JSON output
+                    STORE results in "analysis_results"
+                    MARK all included logs as analyzed
+
+        INCREMENT logs_processed count
+
+    IF logs_processed == 0:
+        PRINT "No new logs, sleeping for SLEEP_INTERVAL seconds"
+        WAIT SLEEP_INTERVAL seconds
+
+ON KeyboardInterrupt:
+    PRINT "Shutting down gracefully"
+    CLOSE database connection
+
+END

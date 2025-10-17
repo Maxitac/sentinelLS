@@ -1,0 +1,25 @@
+START Flask app with HTTPS support (cert.pem + key.pem)
+
+LOAD environment variables:
+    DASHBOARD_TOKEN ← from .env
+    DATABASE_PATH ← logs.db (default)
+
+DEFINE verify_token(request):
+    extract token from Authorization header
+    compare with DASHBOARD_TOKEN
+    return True if valid, else False
+
+DEFINE route '/' (dashboard home):
+    serve 'templates/index.html'
+
+DEFINE route '/api/results' (GET):
+    if verify_token(request) is False:
+        return JSON {error: "Unauthorized"}, 401
+    connect to SQLite (logs.db)
+    read recent rows from 'analysis_results'
+    return as JSON list of objects
+
+SETUP HTTPS server:
+    enable SSLContext with cert.pem and key.pem
+
+RUN Flask app on host=0.0.0.0, port=8443 (HTTPS)

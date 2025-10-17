@@ -55,11 +55,22 @@ def fetch_analysis_results(limit=100):
     """
     rows = conn.execute(query, (limit,)).fetchall()
     conn.close()
-    return [dict(row) for row in rows]
+    
+    # Convert rows to dicts and parse log_ids from JSON string to list
+    results = []
+    for row in rows:
+        result_dict = dict(row)
+        # Check if log_ids is a non-empty string before trying to load it
+        if result_dict.get('log_ids'):
+            result_dict['log_ids'] = json.loads(result_dict['log_ids'])
+        else:
+            result_dict['log_ids'] = [] # Default to an empty list
+        results.append(result_dict)
+        
+    return results
 
 # --- Routes ---
 @app.route("/")
-@auth.login_required
 def index():
     """Render dashboard HTML."""
     return render_template("index.html")

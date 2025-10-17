@@ -1,0 +1,41 @@
+BEGIN
+
+LOAD regex patterns from "patterns.json"
+CONNECT to SQLite database "logs.db"
+
+CREATE TABLE "normalized_logs" IF NOT EXISTS (
+    id, log_id, agent_id, source_type, timestamp,
+    hostname, process, pid, username, ip, port,
+    protocol, event, pattern_name, normalized_at, analyzed
+)
+
+FETCH all logs from "logs" table WHERE log_id NOT IN normalized_logs
+
+IF no new logs found:
+    PRINT "No new logs to normalize"
+    EXIT
+
+FOR each log entry in fetched logs:
+    SET rawlog = log.rawlog
+    SET source_type = log.source_type
+
+    IF source_type NOT in patterns.json:
+        INSERT log into "unknown_logs" table with reason = "No parser defined"
+        CONTINUE
+
+    MATCH rawlog against regex patterns defined for source_type
+
+    IF match found:
+        EXTRACT named groups (timestamp, hostname, pid, ip, username, etc.)
+        CONSTRUCT normalized record with fields:
+            (log_id, agent_id, source_type, extracted fields..., normalized_at)
+        INSERT normalized record into "normalized_logs" table
+        PRINT "Normalized log successfully"
+    ELSE:
+        INSERT rawlog into "unknown_logs" table with reason = "No pattern matched"
+        PRINT "No pattern matched for log"
+
+COMMIT changes to database
+CLOSE database connection
+
+END

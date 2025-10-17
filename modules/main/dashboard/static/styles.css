@@ -1,0 +1,83 @@
+/* === SentinelLS Dashboard Custom Styles === */
+
+/* --- 1. Root Variables for Easy Theming --- */
+:root {
+  --bg-color: #111827;      /* Dark Blue-Gray Background */
+  --surface-color: #1F2937; /* Lighter container background */
+  --primary-accent: #38bdf8;  /* A vibrant light blue */
+  --border-color: #374151;   /* Subtle border/divider color */
+  --text-primary: #F3F4F6;   /* Main text color (light gray) */
+  --text-secondary: #9CA3AF; /* Muted text for timestamps etc. */
+
+  /* Semantic Colors for Severity */
+  --severity-high: #F43F5E;    /* Red */
+  --severity-medium: #F97316; /* Orange */
+  --severity-low: #22C55E;     /* Green */
+}
+
+/* --- 2. General Body and Typography --- */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- 3. Enhanced Table Styles --- */
+table {
+  width: 100%;
+  border-collapse: collapse; /* Keeps borders clean */
+  margin-top: 1em;
+  font-size: 0.9rem;
+}
+
+/* Table Header */
+thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--border-color);
+}
+
+/* Table Body Cells */
+tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Remove border from the very last row for a cleaner finish */
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Interactive Hover Effect for Rows */
+tbody tr {
+  transition: background-color 0.2s ease-in-out;
+}
+
+tbody tr:hover {
+  background-color: var(--surface-color);
+  cursor: pointer;
+}
+
+/* --- 4. Custom Severity Classes (to match JS) --- */
+/* These can be used if you want to expand beyond just text color */
+.severity-high {
+  color: var(--severity-high);
+  font-weight: 600;
+}
+
+.severity-medium {
+  color: var(--severity-medium);
+  font-weight: 600;
+}
+
+.severity-low {
+  color: var(--severity-low);
+  font-weight: 600;
+}
